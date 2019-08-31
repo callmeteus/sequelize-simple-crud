@@ -1,0 +1,16 @@
+{
+    "name": "sequelize-simple-crud",
+    "displayName": "Sequelize Simple CRUD",
+    "version": "1.0.0",
+    "description": "A simple CRUD API with panel for Sequelize.",
+    "main": "backend/index.js",
+    "scripts": {
+        "test": "cd frontend && grunt"
+    },
+    "author": "Matheus Giovani",
+    "license": "Apache-2.0",
+    "dependencies": {
+        "express": "^4.17.1",
+        "sequelize": "^5.15.2"
+    }
+}

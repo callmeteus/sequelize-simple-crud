@@ -1,0 +1,7 @@
+.crud-item .actions {
+	opacity: 0;
+}
+
+.crud-item:hover .actions {
+	opacity: 1;
+}

@@ -1,0 +1,31 @@
+{
+    "name": "sequelize-simple-crud",
+    "displayName": "Sequelize Simple CRUD Frontend",
+    "version": "1.0.0",
+    "description": "A simple CRUD API with panel for Sequelize.",
+    "main": "backend/index.js",
+    "scripts": {
+        "test": "grunt"
+    },
+    "author": "Matheus Giovani",
+    "license": "Apache-2.0",
+    "devDependencies": {
+        "@babel/core": "^7.4.0",
+        "@babel/preset-env": "^7.4.1",
+        "@fortawesome/fontawesome-free": "^5.8.0",
+        "babelify": "^10.0.0",
+        "bootbox": "^5.0.1",
+        "bootstrap": "^4.3.1",
+        "es6-shim": "^0.35.5",
+        "grunt": "^1.0.3",
+        "grunt-browserify": "^5.3.0",
+        "grunt-contrib-clean": "^2.0.0",
+        "grunt-contrib-concat": "^1.0.1",
+        "grunt-contrib-connect": "^2.0.0",
+        "grunt-contrib-copy": "^1.0.0",
+        "grunt-contrib-uglify": "^4.0.0",
+        "grunt-contrib-watch": "^1.1.0",
+        "jquery": "^3.3.1",
+        "popper.js": "^1.14.7"
+    }
+}
