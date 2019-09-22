@@ -33,9 +33,9 @@ class SimpleCrudController {
 
 	/**
 	 * Get a single item
-	 * @param  {Object}   req  [description]
-	 * @param  {Object}   res  [description]
-	 * @param  {Function} next [description]
+	 * @param  {Object}   req  Express request
+	 * @param  {Object}   res  Express response
+	 * @param  {Function} next Express next
 	 */
 	getItem(req, res, next) {
 		// Find one item using request parameters
@@ -58,29 +58,42 @@ class SimpleCrudController {
 
 	/**
 	 * Get all available items
-	 * @param  {Object}   req  [description]
-	 * @param  {Object}   res  [description]
-	 * @param  {Function} next [description]
+	 * @param  {Object}   req  Express request
+	 * @param  {Object}   res  Express response
+	 * @param  {Function} next Express next
 	 */
 	getItems(req, res, next) {
-		// Find all items
-		this[Table].getTable().findAll({
-			where: 						this[Filter],
-			limit: 						this.options.limit,
-			skip: 						(this.options.limit * parseInt(req.params.page || 1, 10) - 1)
+		let count 						= 0;
+
+		this[Table].getTable().count({
+			where: 						this[Filter]
+		})
+		.then((counter) => {
+			// Save counter
+			count 						= counter;
+
+			// Find all items
+			return this[Table].getTable().findAll({
+				where: 					this[Filter],
+				limit: 					this.options.limit,
+				skip: 					(this.options.limit * parseInt(req.params.page || 1, 10) - 1)
+			});
 		})
 		.then((items) => {
 			// Return all items
-			res.json(items.map((item) => new SimpleCrudItem(item.get(), this[Table].hiddenFields)));
+			res.json({
+				count: 					count,
+				items: 					items.map((item) => new SimpleCrudItem(item.get(), this[Table].hiddenFields))
+			});
 		})
 		.catch(next);
 	}
 
 	/**
 	 * Create an item
-	 * @param  {Object}   req  [description]
-	 * @param  {Object}   res  [description]
-	 * @param  {Function} next [description]
+	 * @param  {Object}   req  Express request
+	 * @param  {Object}   res  Express response
+	 * @param  {Function} next Express next
 	 */
 	createItem(req, res, next) {
 		const data 						= new SimpleCrudItem(req.body, this[Table].hiddenFields);
@@ -98,10 +111,9 @@ class SimpleCrudController {
 
 	/**
 	 * Update an item
-	 * @param  {[type]}   req  [description]
-	 * @param  {[type]}   res  [description]
-	 * @param  {Function} next [description]
-	 * @return {[type]}        [description]
+	 * @param  {Object}   req  Express request
+	 * @param  {Object}   res  Express response
+	 * @param  {Function} next Express next
 	 */
 	updateItem(req, res, next) {
 		const data 						= new SimpleCrudItem(req.body, this[Table]);
@@ -121,10 +133,9 @@ class SimpleCrudController {
 
 	/**
 	 * Delete an item
-	 * @param  {[type]}   req  [description]
-	 * @param  {[type]}   res  [description]
-	 * @param  {Function} next [description]
-	 * @return {[type]}        [description]
+	 * @param  {Object}   req  Express request
+	 * @param  {Object}   res  Express response
+	 * @param  {Function} next Express next
 	 */
 	deleteItem(req, res, next) {
 		// Destroy an item

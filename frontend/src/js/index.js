@@ -142,5 +142,5 @@ $("#appMenu, #appContent").on("click", "[data-route]", function(e) {
 	$item.addClass("active");
 
 	// Select the desired route
-	selectRoute(this.dataset.route, this.dataset.method, data);
+	selectRoute(this.dataset.route, this.dataset.method, Object.assign($el.data(), data));
 });

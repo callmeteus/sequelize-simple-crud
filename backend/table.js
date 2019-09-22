@@ -1,5 +1,5 @@
 const SimpleCrudTableSequelize 				= Symbol("SimpleCrudTableSequelize");
-const SimpleCrudTableFields 				= Symbol("SimpleCrudTableFields");
+const SimpleCrudTableFilter 				= require("./filter");
 
 class SimpleCrudTable {
 	constructor(table) {
@@ -20,6 +20,9 @@ class SimpleCrudTable {
 
 		// Set fields array
 		this.fields 						= [];
+
+		// Set filters array
+		this.filters 						= [];
 
 		// Iterate over all table attributes
 		Object.values(table.rawAttributes).forEach((attribute) => {
@@ -88,6 +91,10 @@ class SimpleCrudTable {
 		return this.fields.filter((field) => field.hidden === true);
 	}
 
+	addFilter(data) {
+		return this.filters.push(new SimpleCrudTableFilter(data));
+	}
+
 	setFieldProperty(fieldName, propertyName, propertyValue) {
 		const field 						= this.fields.find((field) => field.name === fieldName);
 		field[propertyName] 				= propertyValue;
@@ -101,6 +108,15 @@ class SimpleCrudTable {
 
 	setReadOnly(fieldName, value = true) {
 		return this.setFieldProperty(fieldName, "readOnly", value);
+	}
+
+	setFieldName(fieldName, value = null) {
+		return this.setFieldProperty(fieldName, "title", value);
+	}
+
+	setName(tableName) {
+		this.name 							= tableName;
+		return true;
 	}
 
 	removeAssociation(associationName) {
