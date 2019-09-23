@@ -1,7 +1,27 @@
 # sequelize-simple-crud
 A simple and automatic CRUD API with panel for Sequelize.
 
-# Usage example
+# API
+- **Router**
+ - Methods
+   - createRoute(SimpleCrudTable)
+   - getRoute(routeName)
+ - Getters
+   - router
+
+- **Table**
+ - Methods
+   - addFilter(fieldName, propertyName, propertyValue)
+   - setFieldProperty(fieldName, propertyName, propertyValue)
+   - setHidden(fieldName, isHidden)
+   - setReadOnly(fieldName, isReadOnly)
+   - setFieldName(fieldName, fieldTitle)
+   - setName(tableName)
+   - removeAssociation(associationName)
+   - getTable()
+
+
+# Usage
 ```
 const Crud = require("sequelize-simple-crud");
 const express = require("express");
