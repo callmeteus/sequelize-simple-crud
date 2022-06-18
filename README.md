@@ -1,6 +1,8 @@
 # sequelize-simple-crud
 A simple and automatic CRUD API with panel for Sequelize.
 
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
 # API
 - **Router**
  - Methods
