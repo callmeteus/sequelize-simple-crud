@@ -18,7 +18,7 @@
         "bootstrap": "^4.3.1",
         "es6-shim": "^0.35.5",
         "grunt": "^1.5.3",
-        "grunt-browserify": "^5.3.0",
+        "grunt-browserify": "^6.0.0",
         "grunt-contrib-clean": "^2.0.0",
         "grunt-contrib-concat": "^1.0.1",
         "grunt-contrib-connect": "^2.0.0",
